@@ -25,7 +25,7 @@ const Navbar_top = () => {
 
     return (
         <header>
-            <Navbar bg="dark" variant="dark" expand="lg" style={{ padding: "1rem" }} >
+            <Navbar bg="dark" variant="dark" expand="lg" style={{ padding: "1rem", /*position: "absolute", */ zIndex: '2', width: '100%' }} >
                 <Container /* style={{ margin: "0 20px" }} */ >
                     <LinkContainer to="/"><Navbar.Brand id="heading_nav" style={{ fontSize: "2.4rem" }}  >BLOGGING</Navbar.Brand></LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -37,8 +37,8 @@ const Navbar_top = () => {
                             </LinkContainer>
 
 
-                            <LinkContainer to="/blog">
-                                <Nav.Link className="navBig">BLOG
+                            <LinkContainer to="/blogs">
+                                <Nav.Link className="navBig">BLOGS
                                 </Nav.Link>
                             </LinkContainer>
 

@@ -161,6 +161,7 @@
 .file--upload>label {
     /* border: 2px ridge #c9184a; */
     /* border-color: black */
+    transition: all 0.3s ease;
 }
 
 .file--upload>label:hover {

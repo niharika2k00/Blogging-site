@@ -25,8 +25,8 @@ const Home = ({ signUp, setSignUp, login, setLogin, USER, set_USER, name, setNam
 
 
     return (
-        <div className="home-bg"  >
-            <div className="self-container" style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', margin: "auto ", margin: "auto", /* transform: "translate(0%, 130%)" */ }}>
+        <div className="home-bg home"  >
+            <div className="self-container homeStyle">
                 <h2>BLOGGING WEBSITE</h2>
 
 

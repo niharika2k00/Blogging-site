@@ -7,3 +7,14 @@
 .pad {
     margin: 4px;
 }
+
+.home {
+    position: relative;
+}
+
+.homeStyle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

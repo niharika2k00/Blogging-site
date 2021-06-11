@@ -16,10 +16,15 @@ const gfm = require('remark-gfm');
 
 
 
-const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle, handleEditorChange, html }) => {
+const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle, EditorChangeHandler, html, UploadCoverImage }) => {
 
     const db = firebase.firestore();
     const store = firebase.storage();
+
+    const [blogId, setBlogId] = useState([]);
+
+
+
     const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 
@@ -63,21 +68,38 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
     const modifiedDate = `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })}, ${date.getFullYear()}`  // 12 May, 2021
 
 
+
     const BlogSubmit_Handler = async (e) => {
         e.preventDefault();
-        console.log("BlogSubmit_Handler running")
-        const blog = {
-            author: author,
-            title: heading,
-            Created_At: modifiedDate,
-            Date: Date.now(),
-            body: html
-        }
-        console.log("EACH BLOG ====> ", blog);
-
         const currentUser = firebase.auth().currentUser;
-        const BLOG = await db.collection('Admins').doc(currentUser.uid).collection('blogs').add(blog);
 
+        try {
+            console.log("BlogSubmit_Handler running");
+            const COVER_IMAGE = await UploadCoverImage();
+
+            const blog = {
+                author: author,
+                title: heading,
+                coverImg: COVER_IMAGE,
+                body: html,
+                admin_uid: currentUser.uid,
+                Created_At: modifiedDate,
+                Date: Date.now(),
+            }
+            console.log("EACH BLOG ====> ", blog);
+
+
+            const BLOG = await db.collection('Blogs').add(blog);
+            console.log(BLOG.id)
+
+            /*  const arrBlog = [...blogId];
+             arrBlog.push(BLOG.id)
+             console.log(arrBlog) */
+            // await db.collection('Admins').doc(currentUser.uid).collection('self_blogs').doc(BLOG.id).set(blog);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -127,7 +149,7 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
             <MdEditor
                 style={{ height: "500px" }}
                 renderHTML={(text) => mdParser.render(text)}
-                onChange={handleEditorChange}
+                onChange={EditorChangeHandler}
             />
 
             {/* <ReactMarkdown source={markdown} /> */}
