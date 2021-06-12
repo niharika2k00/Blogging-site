@@ -19,6 +19,7 @@
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
+    "react-lines-ellipsis": "^0.15.0",
     "react-markdown": "^6.0.2",
     "react-markdown-editor-lite": "^1.2.4",
     "react-router-bootstrap": "^0.25.0",

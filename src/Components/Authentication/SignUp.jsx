@@ -52,7 +52,7 @@ const SignUp = ({ type, setSignUp, setLogin, name, setName, email, setEmail, pas
             setEmail('');
             setConfirmpass('');
             setPassword('');
-            history.push('/createBlogmd');
+            history.push('/createblog');
         }
         catch (error) {
             console.log(error);

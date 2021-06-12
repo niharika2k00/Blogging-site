@@ -7,9 +7,8 @@ import app from "./Firebase/Firebase.js";
 import NAVBAR from './Components/Navbar/Navbar_top.jsx';
 import HOMESCREEN from './Components/Home/Home.jsx';
 import CREATE_BLOG from './Components/Blog_Creation/CreateBlog.jsx';
-import CREATE_BLOG_MD from './Components/Blog_Creation/CreateBlogMD.jsx';
-import BLOG from './Components/Blog_Display/BlogScreenMain.jsx';
-import BLOG_DETAILS from './Components/Blog_Display/BlogDetailsScreen.js';
+import BLOG from './Components/BlogScreen/BlogScreen.jsx';
+import BLOG_DETAILS from './Components/Blog_Individual/BlogDetailsScreen.jsx';
 
 
 const App = () => {
@@ -113,8 +112,7 @@ const App = () => {
 
 
 
-  const FetchBlogs = async () => {
-
+  const FetchBlogs = () => {
     if (Object.keys(USER).length !== 0) {
       db.collection('Blogs').onSnapshot(snapshot => {
         const Items = snapshot.docs.map(doc => ({
@@ -124,7 +122,6 @@ const App = () => {
         console.log(Items);
         setAllBlogs(Items)
       })
-
     }
     else {
       console.log("No user logged in OOPSSS !! ");
@@ -140,16 +137,19 @@ const App = () => {
   }, [])
 
 
+
+
+
+
   return (
     <Router>
-      <div className="App" style={{ backgroundColor: "white" }}>
+      <div id="App" style={{ backgroundColor: "#f4f4f4" }}>
         <NAVBAR />
 
         <main >
           <div /* className="self_containerFull" */>
 
-            {/* <Route path='/createBlogmd' component={CREATE_BLOG_MD} /> */}
-            <Route path='/createBlog' component={CREATE_BLOG} exact />
+            {/* <Route path='/createBlog' component={CREATE_BLOG} exact /> */}
 
             <Route path='/'
               render={(props) => (
@@ -174,9 +174,9 @@ const App = () => {
             />
 
 
-            <Route path='/createBlogmd'
+            <Route path='/createblog'
               render={(props) => (
-                <CREATE_BLOG_MD {...props}
+                <CREATE_BLOG {...props}
                   USER={USER}
                   set_USER={set_USER}
                   heading={heading}

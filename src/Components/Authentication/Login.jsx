@@ -25,7 +25,7 @@ const Login = ({ setLogin, setSignUp, email, name, setEmail, password, setPasswo
             const User = userCredential.user;
             console.log(User.displayName);
             setLogin(false);
-            history.push('/createBlogmd');
+            history.push('/createblog');
 
         } catch (error) {
             console.log(error);

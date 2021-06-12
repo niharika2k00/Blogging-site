@@ -1,0 +1,186 @@
+/* -------------------------------------------    SHARE BUTTON      ------------------------------------------  */
+
+.share_btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-facebook, .icon-linkedin, .icon-whatsapp {
+    color: #fff;
+    transition: 0.3s !important;
+}
+
+.icon-facebook:hover, .icon-instagram:hover, .icon-linkedin:hover, .icon-whatsapp:hover {
+    transform: scale(1.3, 1.3);
+    -webkit-transform: scale(1.3, 1.3);
+    -moz-transform: scale(1.3, 1.3);
+    transition: 0.3s;
+}
+
+/* ---------------------------------------     BLOG STYLE    ------------------------------- */
+
+.blogContainer {
+    margin: 1rem auto;
+    /*  margin auto ---> same margin on both the sides  */
+    padding: 1rem;
+    width: 63vw;
+    background-color: white;
+}
+
+.coverImg {
+    height: 30rem;
+}
+
+.BlogHead {
+    padding: 2.6rem;
+    padding-bottom: .2rem;
+}
+
+.BlogAuthor {
+    color: grey;
+    font-size: 1.2rem;
+    padding: 0 3rem;
+}
+
+.BlogBody {
+    padding: 1.4rem;
+    margin: 0.2rem;
+    width: 60vw;
+    background-color: white;
+}
+
+.BlogBody img {
+    border-radius: .9rem;
+    /* opacity: .8; */
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 27rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.BlogBody p {
+    padding: 1rem;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+/*  *************************************************           MEDIA QUERY FOR THE BLOG SCREEN        ******************************** */
+
+/* No greater than 1000px, no less than 800px */
+
+@media (max-width:1000px) and (min-width:800px) {
+    .blogContainer {
+        width: 74vw;
+    }
+    .BlogBody {
+        padding: 1.1rem;
+        width: 72vw;
+    }
+    .BlogHead {
+        padding: 2.3rem;
+        font-size: 2.15rem;
+        padding-bottom: .2rem;
+    }
+    .BlogAuthor {
+        font-size: 1.0rem;
+    }
+    .coverImg {
+        height: 25rem;
+    }
+    .BlogBody img {
+        height: 22rem;
+    }
+    .BlogBody p {
+        font-size: 1.15em;
+    }
+}
+
+@media (max-width:800px) and (min-width:600px) {
+    .blogContainer {
+        width: 78vw;
+    }
+    .BlogBody {
+        padding: 1.1rem;
+        width: 76vw;
+    }
+    .BlogHead {
+        padding: 1.7rem;
+        font-size: 2.15rem;
+        padding-bottom: .2rem;
+    }
+    .BlogAuthor {
+        font-size: 1.0rem;
+    }
+    .coverImg {
+        height: 23rem;
+    }
+    .BlogBody img {
+        height: 20rem;
+    }
+    .BlogBody p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width:600px) and (min-width:480px) {
+    .blogContainer {
+        width: 80vw;
+    }
+    .BlogBody {
+        padding: 1.1rem;
+        width: 76vw;
+    }
+    .BlogHead {
+        padding: 1.3rem;
+        font-size: 1.8rem;
+        padding-bottom: .2rem;
+    }
+    .BlogAuthor {
+        font-size: 1.0rem;
+    }
+    .coverImg {
+        height: 18rem;
+    }
+    .BlogBody img {
+        height: 14rem;
+    }
+    .BlogBody p {
+        font-size: .9rem;
+    }
+}
+
+@media (max-width:480px) {
+    .blogContainer {
+        width: 84vw;
+    }
+    .BlogBody {
+        padding: 1.1rem;
+        width: 80vw;
+    }
+    .BlogHead {
+        padding: 1.3rem;
+        font-size: 1.6rem;
+        padding-bottom: .2rem;
+    }
+    .BlogAuthor {
+        font-size: 1.0rem;
+        padding: 0 2rem;
+    }
+    .coverImg {
+        height: 16rem;
+    }
+    .BlogBody img {
+        height: 14rem;
+    }
+    .BlogBody p {
+        font-size: 1.0rem;
+    }
+    .BlogBody h4 {
+        font-size: 1.25rem;
+    }
+    .BlogBody h3 {
+        font-size: 1.2rem;
+    }
+}
