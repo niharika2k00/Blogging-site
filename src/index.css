@@ -9,6 +9,22 @@
     padding: 1.5rem;
 }
 
+.padding-tb {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
 html {
     /* font-size: 10px; */
+}
+
+@media (max-width: 460px) {
+    .self-container {
+        margin: 0.5rem;
+        padding: .45rem;
+    }
+    .padding-tb {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
 }

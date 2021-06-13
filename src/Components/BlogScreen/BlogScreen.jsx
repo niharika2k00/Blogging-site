@@ -1,24 +1,28 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Form, Row, Col, Button, Card } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import LOAD from '../Loading.js';
 import EACH_CARD from './card.js';
 import '../../STYLES/blogScreen.css';
 
 
 
-const Blog = ({ html, details, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle, FetchBlogs, setAllBlogs, allBlogs, USER
-    , loading, setLoading }) => {
+const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading }) => {
 
     const [currBlogItems, setcurrBlogItems] = useState([]);
     const BlogLength = allBlogs.length;
 
+
+
     useEffect(() => {
         if (Object.keys(USER).length !== 0) {
+            setLoading(true);
             FetchBlogs();
             console.log(allBlogs);            // array of Object
             console.log(allBlogs.length);
+            setLoading(false);
         }
         else {
             console.log("No User Logged In");
@@ -31,12 +35,14 @@ const Blog = ({ html, details, setDetailsPopup, author, setAuthor, heading, setH
     // -----------------     SORT USING DATES     ----------------
     useEffect(() => {
         if ((Object.keys(USER).length !== 0) && (allBlogs.length !== 0)) {
+            setLoading(true);
             const blogsClone = [...allBlogs];
             blogsClone.sort(function (a, b) {
                 return (b.Date) - (a.Date);
             });
             setcurrBlogItems(blogsClone);
             console.log(blogsClone);
+            setLoading(false);
         }
     }, [USER, allBlogs.length])
 
@@ -78,16 +84,19 @@ const Blog = ({ html, details, setDetailsPopup, author, setAuthor, heading, setH
                     currBlogItems && currBlogItems.length !== 0 ?
                         (
                             <div className="container-fluid">
-                                <div className="row" style={{ justifyContent: "center", alignItems: "center", margin: "auto" }}>
-                                    <div className="col-lg-9 col-sm-12 col-xs-12 col-md-9 mt-3">
-                                        <div className="card" style={{ borderRadius: "1rem" }}  >
+                                <div className="row" style={{ justifyContent: "center", alignItems: "center", margin: "auto", paddingBottom: "3rem" }}>
+                                    <div className="col-lg-9 col-sm-12 col-xs-12 col-md-9 mt-3 shadow">
+                                        <div className="card"  >
                                             <div className="card-horizontal">
                                                 <div className="img-square-wrapper">
-                                                    <img className="latestCard-img" /* href={`/blog/${ID}`} */ src={currBlogItems[0].coverImg} alt="Card image cap" />
+                                                    <Link to={`/blog/${currBlogItems[0].id}`} >
+                                                        <img className="latestCard-img" src={currBlogItems[0].coverImg} alt="Card image " />
+                                                    </Link>
                                                 </div>
                                                 <div className="card-body">
-                                                    <h4 className="card-title"> {/* {allBlogs[BlogLength - 1].title} */} {currBlogItems[0].title}   </h4>
+                                                    <h4 className="card-title"> {currBlogItems[0].title}   </h4>
                                                     <h6> -- By {currBlogItems[0].author}  </h6>
+                                                    <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
                                                     <p className="date"  >  {currBlogItems[0].Created_At}  </p>
                                                 </div>
                                             </div>
@@ -104,23 +113,24 @@ const Blog = ({ html, details, setDetailsPopup, author, setAuthor, heading, setH
 
 
 
-            {loading && allBlogs.length !== 0 ? <LOAD /> :
-                (
-                    <section style={{ padding: "1rem 0 ", margin: "1rem 0" }} >
+            {loading ? <LOAD /> :
+                allBlogs && allBlogs.length !== 0 ?
+                    (
+                        <section style={{ padding: "1rem 0 ", margin: "1rem 0" }} >
 
-                        <Row style={{ padding: "3rem auto" }} >
-                            {allBlogs.map(card => (
-                                (<Col key={card.id} lg={3} md={4} sm={12} xs={12} className="hovercard" style={{ marginBottom: "1rem" }}>
-                                    <EACH_CARD
-                                        ID={card.id}
-                                        each_cardObj={card}
-                                        USER={USER}
-                                    />
-                                </Col>)
-                            ))}
-                        </Row>
-                    </section>
-                )
+                            <Row style={{ padding: "3rem auto" }} >
+                                {allBlogs.map(card => (
+                                    (<Col key={card.id} lg={3} md={4} sm={12} xs={12} className="hovercard" style={{ marginBottom: "1rem" }}>
+                                        <EACH_CARD
+                                            ID={card.id}
+                                            each_cardObj={card}
+                                            USER={USER}
+                                        />
+                                    </Col>)
+                                ))}
+                            </Row>
+                        </section>
+                    ) : []
             }
 
 

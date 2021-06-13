@@ -23,6 +23,21 @@
     height: 26rem;
 }
 
+#createHead {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 2.2rem;
+}
+
+#centerbtn {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
 /* *******************       POPUP STYLES              ************************* */
 
 .pop-up {
@@ -126,8 +141,6 @@
 .file {
     position: relative;
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 .file>input[type="file"] {
@@ -145,7 +158,7 @@
     /* width: 5rem; */
     /* height: 3rem; */
     /* border: 1.5px black groove; */
-    background-color: hsl(0, 40%, 98%);
+    background-color: black;
     /*  heart bg color */
     color: hsl(0, 0%, 29%);
     padding: 16px;
@@ -164,8 +177,10 @@
     transition: all 0.3s ease;
 }
 
+/* heart hover */
+
 .file--upload>label:hover {
-    background-color: #dbf5f587;
+    background-color: #2ec4b6;
 }
 
 .file--upload>label:active {
@@ -181,5 +196,56 @@
 
 .ico_big {
     font-size: 2.5rem;
-    color: #08bdbd
+    color: white;
+}
+
+.buttonPadding {
+    padding-top: 4rem;
+    margin-bottom: 2.5rem;
+}
+
+.rc-md-navigation .button-wrap .rmel-iconfont {
+    font-size: 24px;
+}
+
+.rc-md-navigation .button-wrap .button {
+    height: 50px;
+    margin-right: 14px;
+    padding-top: 6px;
+}
+
+@media (max-width:870px) and (min-width:460px) {
+    .rc-md-navigation .button-wrap .rmel-iconfont {
+        font-size: 20px;
+    }
+    .rc-md-navigation .button-wrap .button {
+        height: 40px;
+        margin-right: 10px;
+    }
+    .ico_big {
+        font-size: 1.3rem;
+    }
+    .file>label {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 460px) {
+    .rc-md-navigation .button-wrap .rmel-iconfont {
+        font-size: 17.5px;
+    }
+    .rc-md-navigation .button-wrap .button {
+        height: 30px;
+        margin-right: 8px;
+    }
+    #createHead {
+        font-size: 1.7rem;
+        padding-top: 1.4rem;
+    }
+    .ico_big {
+        font-size: 1.45rem;
+    }
+    .file>label {
+        padding: 8px;
+    }
 }

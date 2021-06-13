@@ -1,9 +1,7 @@
 
 
-import React, { useState, useEffect } from 'react';
-import { Form, Row, Col, Button, Card } from 'react-bootstrap';
+import React, { useEffect } from 'react';
 import LOAD from '../Loading.js';
-import { Link } from "react-router-dom";
 import {
     FacebookShareButton,
     FacebookIcon,
@@ -34,8 +32,10 @@ const BlogDetailsScreen = ({ FetchBlogs, setAllBlogs, allBlogs, USER, loading, s
 
     useEffect(() => {
         if (Object.keys(USER).length !== 0) {
+            setLoading(true);
             FetchBlogs();
             console.log(allBlogs);            // array of Object
+            setLoading(false);
         }
     }, [setAllBlogs, USER]);
 

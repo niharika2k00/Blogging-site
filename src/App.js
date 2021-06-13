@@ -19,6 +19,8 @@ const App = () => {
   const [signUp, setSignUp] = useState(false);
   const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [warningMessage, setWarningMessage] = useState('');
   const [USER, set_USER] = useState({});
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -74,10 +76,13 @@ const App = () => {
 
   // ----------   SINGLE IMAGE UPLOAD METHOD     -----------
   const Img_handle = (e) => {
-    if (e.target.files[0])
+    if (e.target.files[0]) {
       setCoverImg(e.target.files[0]);
+      console.log(e.target.files[0])
+    }
     console.log("Image handler")
   };
+
 
 
   const UploadCoverImage = async () => {
@@ -97,17 +102,19 @@ const App = () => {
 
 
 
+  // ----------    EDITOR ON CHANGE  HANDLER (runs for a single change in the editor)    ---------------------
+  // Manupulation done with PURE JS
   function EditorChangeHandler({ html, text }) {
     console.log('HTML text = ', html)
     // console.log('Mark Down text = ', text)
-    document.getElementById("blogBody").innerHTML = html;
-    setHtml(html);
+    // document.getElementById("blogBody").innerHTML = html;
+    // setHtml(html);
     // document.getElementById('blogBody').querySelector('img').classList.add("imgStyle");
-    var imageTag = document.getElementById('blogBody').querySelectorAll('img');
-    console.log(imageTag);
-    for (var i = 0; i < imageTag.length; ++i) {
-      imageTag[i].classList.add('imgStyle');                          // apply styling to the pic when render in the same page
-    }
+    // var imageTag = document.getElementById('blogBody').querySelectorAll('img');
+    // console.log(imageTag);
+    // for (var i = 0; i < imageTag.length; ++i) {
+    // imageTag[i].classList.add('imgStyle');                          // apply styling to the pic using js when render in the same page
+    // }
   }
 
 
@@ -127,15 +134,6 @@ const App = () => {
       console.log("No user logged in OOPSSS !! ");
     }
   }
-
-
-
-
-  useEffect(() => {
-    FetchBlogs()
-
-  }, [])
-
 
 
 
@@ -168,6 +166,8 @@ const App = () => {
                   setPassword={setPassword}
                   confirmpass={confirmpass}
                   setConfirmpass={setConfirmpass}
+                  setLoading={setLoading}
+                  loading={loading}
                 />
               )}
               exact
@@ -190,8 +190,22 @@ const App = () => {
                   EditorChangeHandler={EditorChangeHandler}
                   html={html}
                   UploadCoverImage={UploadCoverImage}
-                  loading={loading}
                   setLoading={setLoading}
+                  loading={loading}
+                  setSuccessMessage={setSuccessMessage}
+                  successMessage={successMessage}
+                  setWarningMessage={setWarningMessage}
+                  warningMessage={warningMessage}
+                  signUp={signUp}
+                  setSignUp={setSignUp}
+                  name={name}
+                  setName={setName}
+                  email={email}
+                  setEmail={setEmail}
+                  password={password}
+                  setPassword={setPassword}
+                  confirmpass={confirmpass}
+                  setConfirmpass={setConfirmpass}
                 />
               )}
               exact
@@ -202,20 +216,8 @@ const App = () => {
               render={(props) => (
                 <BLOG {...props}
                   USER={USER}
-                  set_USER={set_USER}
-                  heading={heading}
-                  setHeading={setHeading}
-                  author={author}
-                  setAuthor={setAuthor}
-                  details={details}
-                  setDetailsPopup={setDetailsPopup}
-                  Img_handle={Img_handle}
-                  Save_handler={Save_handler}
-                  EditorChangeHandler={EditorChangeHandler}
-                  html={html}
                   FetchBlogs={FetchBlogs}
                   allBlogs={allBlogs}
-                  setAllBlogs={setAllBlogs}
                   loading={loading}
                   setLoading={setLoading}
                 />

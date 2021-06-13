@@ -50,7 +50,10 @@
 .latestCard-img {
     width: 28rem;
     height: 15rem;
-    border-radius: 1rem;
+}
+
+.shadow {
+    box-shadow: 8px 5px 10px rgb(199, 194, 194);
 }
 
 .hovercard {
@@ -71,7 +74,7 @@
     color: white;
     font-weight: 500;
     border-radius: 1rem;
-    padding: .2rem .4rem;
+    padding: .2rem 1rem;
 }
 
 .card-title {

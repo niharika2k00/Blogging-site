@@ -1,25 +1,21 @@
 
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, Navbar, Container, Form, FormControl, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Nav, Navbar, Container } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
+// import { useHistory } from "react-router-dom";
+// import { useLocation } from 'react-router-dom'
 import '../../STYLES/navbar.css';
-import { Redirect } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
-import { useLocation } from 'react-router-dom'
-import '../../STYLES/navbar.css';
-// import SIGNUP_POPUP from '../Authentication/SignUp.jsx';
-// import Login from '../Authentication/Login.jsx';
-// import app from "../../Firebase/Firebase.js";
+
 
 
 
 const Navbar_top = () => {
 
-
-    let history = useHistory();
-    const location = useLocation();
-    const modify_url = location.pathname;
+    // let history = useHistory();
+    // const location = useLocation();
+    // const modify_url = location.pathname;
 
 
 

@@ -9,7 +9,7 @@ import '../../STYLES/blogCreate.css';
 
 
 
-const Popup = ({ type, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle }) => {
+const Popup = ({ setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle }) => {
 
     // const db = firebase.firestore();
     // const store = firebase.storage();

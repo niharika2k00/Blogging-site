@@ -1,16 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
-import { Form, Row, Col, Button, Card, } from 'react-bootstrap';
-import LOAD from '../Loading.js';
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Button, Card, } from 'react-bootstrap';
 import LinesEllipsis from 'react-lines-ellipsis';
 
 
 
 const card = ({ ID, each_cardObj, USER }) => {
-
-
-
 
 
 

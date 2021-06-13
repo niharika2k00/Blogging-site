@@ -1,54 +1,49 @@
 
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import MarkdownIt from 'markdown-it'
 import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
-import { Nav, Navbar, Container, Form, FormControl, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 // import ReactMarkdown from 'react-markdown';
 // import { render } from 'react-dom';
 import firebase from 'firebase';
 // import app from "../../Firebase/Firebase.js";
 import DETAILS from './PopupDetails.js';
 import '../../STYLES/blogCreate.css';
+import LOAD from '../Loading.js';
+import MESS from '../Message.js';
+import '../../STYLES/home.css';
+import '../../index.css';
+import SIGNUP_POPUP from '../Authentication/SignUp.jsx';
+
+
 // const gfm = require('remark-gfm');
 
 
 
+
 // BLOG CREATION USING MARK DOWN
-const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle, EditorChangeHandler, html, UploadCoverImage }) => {
+const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle, EditorChangeHandler, html, UploadCoverImage, loading,
+    setLoading, successMessage, setSuccessMessage, signUp, setSignUp, name, setName, email, setEmail, password, setPassword, confirmpass, setConfirmpass,
+    warningMessage, setWarningMessage }) => {
 
-    const db = firebase.firestore();
+
+
     const store = firebase.storage();
-
-    const [blogId, setBlogId] = useState([]);
-
-
-
+    const db = firebase.firestore();
     const mdParser = new MarkdownIt(/* Markdown-it options */);
-
-
-
     // var src = "#### Load the markdown *document* **jjk** ## Header"   
     const mark = `Just a link: https://reactjs.com.`
-
-
-
-
-    useEffect(() => {
-        document.getElementById("blogBody").innerHTML = "hello";
-
-    }, []);
-
-
-    useEffect(() => {
-        console.log("AUTHOR : ", author);
-    })
-
 
     // Timestamp
     const date = new Date();
     const modifiedDate = `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })}, ${date.getFullYear()}`  // 12 May, 2021
+
+
+    /* useEffect(() => {
+        document.getElementById("blogBody").innerHTML = "hello";
+    }, []); */
 
 
 
@@ -57,6 +52,7 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
         const currentUser = firebase.auth().currentUser;
 
         try {
+            setLoading(true);
             console.log("BlogSubmit_Handler running");
             const COVER_IMAGE = await UploadCoverImage();
 
@@ -79,6 +75,34 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
              arrBlog.push(BLOG.id)
              console.log(arrBlog) */
             // await db.collection('Admins').doc(currentUser.uid).collection('self_blogs').doc(BLOG.id).set(blog);
+            setLoading(false);
+            setSuccessMessage("Blog successfully submitted ... ");
+        }
+        catch (error) {
+            console.log(error);
+            setWarningMessage("ERROR : Oopss Something went wrong !")
+        }
+    }
+
+
+
+    const ImageUploadHandler = async (file, callback) => {
+        console.log("file : ", file);
+        const Picture = await uploadImg(file);
+        console.log(Picture);
+        callback(Picture);
+    }
+
+
+
+    const uploadImg = async (file) => {
+        try {
+            console.log("UploadImage  : ", file)
+            const a = store.ref().child(`Images/Blog-Cover-Image/${file.name}`);
+            await a.put(file);
+            const downloadURL = await a.getDownloadURL();
+            console.log("download url = ", downloadURL);
+            return downloadURL;
         }
         catch (error) {
             console.log(error);
@@ -90,50 +114,92 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
 
 
     return (
-        <div className="self-container" >
-            <h4 style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center' }} > BLOG USING MARK DOWN</h4>
+        <div className="self-container" style={{ paddingBottom: "10rem" }} >
+            <h4 id="createHead" > Create Your Own Blog</h4>
 
 
-            <Form id="login_form" onSubmit={BlogSubmit_Handler} >
-                <Form.Group controlId='title'>
-                    {/* <h5 style={{ color: "#ffa200" }} >Please fill all the fields .... </h5> */}
-                    <Form.Label><b style={{ fontSize: "1.2rem" }} >Details<span style={{ color: 'crimson' }}>*</span> </b></Form.Label>
-                    {
-                        details && <DETAILS
-                            type='setting'
-                            author={author}
-                            setAuthor={setAuthor}
-                            heading={heading}
-                            setHeading={setHeading}
-                            setDetailsPopup={setDetailsPopup}   /* true paasss */
-                            Save_handler={Save_handler}
-                            Img_handle={Img_handle}
-                        />
-                    }
+            {/* --------------  SIGNUP  POPUP(REGISTER) -- for new user ------------ */}
+            {
+                signUp && <SIGNUP_POPUP
+                    setSignUp={setSignUp}
+                    name={name}
+                    setName={setName}
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    confirmpass={confirmpass}
+                    setConfirmpass={setConfirmpass}
+                    setLoading={setLoading}
+                    loading={loading}
+                />
+            }
 
-                    <div className='file file--upload' >
-                        <label onClick={() => setDetailsPopup(true)}>
-                            <i className="fas fa-heart ico_big"></i>
-                        </label>
-                    </div>
-                </Form.Group>
-
-
-
-                <div id="centerbtn">
-                    <Button type='submit' variant='danger' /* disabled={loading}  */ style={{ marginTop: "1rem" }}  >
-                        <b style={{ fontSize: "16px" }}>Submit Post</b>
-                    </Button>
+            <div className="d-flex justify-content-end  buttonPadding "   >
+                <div className="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" className="btn" href="/createblog" style={{ backgroundColor: "#5ab1ad", color: "white" }}>
+                        <i className="fas fa-plus-circle"></i> Create Blog
+                    </button>
+                    <button type="button" className="btn " onClick={() => setSignUp(true)} style={{ backgroundColor: "#ffc156", color: "white" }}  >
+                        <i className="fas fa-plus-circle"></i>  Add Admin
+                    </button>
                 </div>
-            </Form>
+            </div>
 
 
 
-            <MdEditor
-                style={{ height: "500px" }}
-                renderHTML={(text) => mdParser.render(text)}
-                onChange={EditorChangeHandler}
-            />
+            {warningMessage && <MESS variant='danger'>{warningMessage}</MESS>}
+            {successMessage && <MESS variant='success'>{successMessage}</MESS>}
+
+            {
+                loading ? <LOAD /> :
+                    (
+                        <Form id="login_form"   /* onSubmit={BlogSubmit_Handler}  */>
+                            <Form.Group controlId='title'>
+                                <Form.Label><b style={{ fontSize: "1.2rem" }} >Details<span style={{ color: 'crimson' }}>*</span> </b></Form.Label>
+                                {
+                                    details && <DETAILS
+                                        type='setting'
+                                        author={author}
+                                        setAuthor={setAuthor}
+                                        heading={heading}
+                                        setHeading={setHeading}
+                                        setDetailsPopup={setDetailsPopup}   /* true paasss */
+                                        Save_handler={Save_handler}
+                                        Img_handle={Img_handle}
+                                    />
+                                }
+
+                                <div className='file file--upload' >
+                                    <label onClick={() => setDetailsPopup(true)}>
+                                        <i className="fas fa-heart ico_big"></i>
+                                    </label>
+                                </div>
+                            </Form.Group>
+                            {/* <input type="button">   ------>   is just a button and won't do anything by itself. 
+                                <input type="submit">   ------>    when inside a form element, will submit the form when clicked. */}
+                        </Form>
+                    )
+            }
+
+
+            <section className="padding-tb" >
+                <MdEditor
+                    style={{ height: "650px" }}
+                    renderHTML={(text) => mdParser.render(text)}
+                    onChange={EditorChangeHandler}
+                    onImageUpload={ImageUploadHandler}
+                    placeholder={"Start writing your Blog..."}
+                />
+
+            </section>
+
+
+            <div id="centerbtn">
+                <Button type='submit' variant='dark' style={{ marginTop: "1rem" }} onClick={BlogSubmit_Handler} >
+                    <b style={{ fontSize: "18px" }}>Submit Post</b>
+                </Button>
+            </div>
 
 
             {/* <ReactMarkdown># Hello, *world*!</ReactMarkdown> */}
@@ -141,15 +207,14 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
             {/* <ReactMarkdown source={src} /> */}
 
 
-
-
-            <h1>{heading}</h1>
+            {/* <h1>{heading}</h1>
             <h5>{author} </h5>
 
             <div id="blogBody" >
+            </div> */}
 
-            </div>
-        </div>
+
+        </div >
     )
 }
 
