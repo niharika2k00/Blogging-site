@@ -8,6 +8,7 @@ import { Form, Button } from 'react-bootstrap';
 // import ReactMarkdown from 'react-markdown';
 // import { render } from 'react-dom';
 import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 // import app from "../../Firebase/Firebase.js";
 import DETAILS from './PopupDetails.js';
 import '../../STYLES/blogCreate.css';
@@ -16,6 +17,8 @@ import MESS from '../Message.js';
 import '../../STYLES/home.css';
 import '../../index.css';
 import SIGNUP_POPUP from '../Authentication/SignUp.jsx';
+import { useHistory } from "react-router-dom";
+
 
 
 // const gfm = require('remark-gfm');
@@ -30,9 +33,11 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
 
 
 
+
+    let history = useHistory();
     const store = firebase.storage();
     const db = firebase.firestore();
-    const mdParser = new MarkdownIt(/* Markdown-it options */);
+    const mdParser = new MarkdownIt();
     // var src = "#### Load the markdown *document* **jjk** ## Header"   
     const mark = `Just a link: https://reactjs.com.`
 
@@ -45,6 +50,10 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
         document.getElementById("blogBody").innerHTML = "hello";
     }, []); */
 
+
+    const redirect = () => {
+        history.push('/blogs');
+    }
 
 
     const BlogSubmit_Handler = async (e) => {
@@ -137,11 +146,11 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
 
             <div className="d-flex justify-content-end  buttonPadding "   >
                 <div className="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" className="btn" href="/createblog" style={{ backgroundColor: "#5ab1ad", color: "white" }}>
-                        <i className="fas fa-plus-circle"></i> Create Blog
+                    <button type="submit" onClick={redirect} className="btn" style={{ backgroundColor: "#5ab1ad", color: "white" }}>
+                        <h6 style={{ marginTop: ".1rem", marginBottom: ".1rem" }} >  <i className="fas fa-eye"></i> All Blogs</h6>
                     </button>
                     <button type="button" className="btn " onClick={() => setSignUp(true)} style={{ backgroundColor: "#ffc156", color: "white" }}  >
-                        <i className="fas fa-plus-circle"></i>  Add Admin
+                        <h6 style={{ marginTop: ".1rem", marginBottom: ".1rem" }}> <i className="fas fa-plus-circle"></i>  Add Admin</h6>
                     </button>
                 </div>
             </div>
@@ -197,7 +206,7 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
 
             <div id="centerbtn">
                 <Button type='submit' variant='dark' style={{ marginTop: "1rem" }} onClick={BlogSubmit_Handler} >
-                    <b style={{ fontSize: "18px" }}>Submit Post</b>
+                    <b style={{ fontSize: "18px" }}>Submit Blog</b>
                 </Button>
             </div>
 

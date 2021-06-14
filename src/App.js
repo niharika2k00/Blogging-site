@@ -32,6 +32,8 @@ const App = () => {
   const [html, setHtml] = useState('');
   const [coverImg, setCoverImg] = useState(null)
   const [allBlogs, setAllBlogs] = useState([]);
+  const [leftCards, setLeftCards] = useState([]);                      // dividing the array into 2 halves  ----------->   Cards & Carousal
+  const [rightCarousal, setRightCarousal] = useState([]);
 
 
 
@@ -108,7 +110,7 @@ const App = () => {
     console.log('HTML text = ', html)
     // console.log('Mark Down text = ', text)
     // document.getElementById("blogBody").innerHTML = html;
-    // setHtml(html);
+    setHtml(html);
     // document.getElementById('blogBody').querySelector('img').classList.add("imgStyle");
     // var imageTag = document.getElementById('blogBody').querySelectorAll('img');
     // console.log(imageTag);
@@ -126,7 +128,7 @@ const App = () => {
           id: doc.id,
           ...doc.data(),
         }))
-        console.log(Items);
+        // console.log(Items);
         setAllBlogs(Items)
       })
     }
@@ -220,6 +222,10 @@ const App = () => {
                   allBlogs={allBlogs}
                   loading={loading}
                   setLoading={setLoading}
+                  setLeftCards={setLeftCards}
+                  leftCards={leftCards}
+                  setRightCarousal={setRightCarousal}
+                  rightCarousal={rightCarousal}
                 />
               )}
               exact

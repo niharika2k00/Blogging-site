@@ -82,7 +82,6 @@ const BlogDetailsScreen = ({ FetchBlogs, setAllBlogs, allBlogs, USER, loading, s
                                                 </div>
 
                                                 <hr></hr>
-
                                                 {/* <iframe srcDoc={item.body} width="100%" height="100%"></iframe> */}
                                                 <div className="BlogBody" dangerouslySetInnerHTML={{ __html: item.body }}></div>
                                             </div>
@@ -91,7 +90,6 @@ const BlogDetailsScreen = ({ FetchBlogs, setAllBlogs, allBlogs, USER, loading, s
                                 ))
                             }
                         </div>
-
                     ) : []
             }
         </div>
