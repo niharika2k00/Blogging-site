@@ -18,3 +18,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+@media (max-width:450px) {
+    .homeStyle h2 {
+        font-size: 1.0rem;
+        margin-bottom: 2rem;
+        /* transform: translate(-20%, -60%); */
+    }
+    .pad {
+        margin: 1px;
+        padding: 4px 8px;
+    }
+}

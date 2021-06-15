@@ -9,6 +9,7 @@ import EACH_CAROUSAL from './carousal.js';
 import '../../STYLES/blogScreen.css';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { useHistory } from "react-router-dom";
 
 
 
@@ -18,7 +19,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
     const [currBlogItems, setcurrBlogItems] = useState([]);
     const BlogLength = allBlogs.length;
     var width = window.innerWidth;
-
+    let history = useHistory();
 
 
     useEffect(() => {
@@ -27,10 +28,11 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
             FetchBlogs();
             console.log(allBlogs);            // array of Object
             // console.log(allBlogs.length);
-            setLoading(false);
+            // setLoading(false);
         }
         else {
             console.log("No User Logged In");
+            history.push('/');
         }
     }, [USER, allBlogs.length]);
 
@@ -58,7 +60,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
             });
             setcurrBlogItems(blogsClone);
             // console.log(blogsClone);
-            setLoading(false);
+            // setLoading(false);
         }
     }, [USER, allBlogs.length])
 
@@ -139,34 +141,33 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
 
                         (  // -----------------------      FOR LAPTOP VIEW          ---------------------------
                             <section>
-                                {loading ? <LOAD /> :
-                                    currBlogItems && currBlogItems.length !== 0 ?
-                                        (
-                                            <div className="container-fluid">
-                                                <div className="row" style={{ justifyContent: "center", alignItems: "center", margin: "auto", paddingBottom: "3rem" }}>
-                                                    <div className="col-lg-9 col-sm-12 col-xs-12 col-md-9 mt-3 shadow">
-                                                        <div className="card"  >
-                                                            <div className="card-horizontal">
-                                                                <div className="img-square-wrapper">
-                                                                    <Link to={`/blog/${currBlogItems[0].id}`} >
-                                                                        <img className="latestCard-img" src={currBlogItems[0].coverImg} alt="Card image " />
-                                                                    </Link>
-                                                                </div>
-                                                                <div className="card-body">
-                                                                    <h4 className="card-title"> {currBlogItems[0].title}   </h4>
-                                                                    <h6> -- By {currBlogItems[0].author}  </h6>
-                                                                    <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
-                                                                    <p className="date"  >  {currBlogItems[0].Created_At}  </p>
-                                                                </div>
+                                {currBlogItems && currBlogItems.length !== 0 ?
+                                    (
+                                        <div className="container-fluid">
+                                            <div className="row" style={{ justifyContent: "center", alignItems: "center", margin: "auto", paddingBottom: "3rem" }}>
+                                                <div className="col-lg-9 col-sm-12 col-xs-12 col-md-9 mt-3 shadow">
+                                                    <div className="card"  >
+                                                        <div className="card-horizontal">
+                                                            <div className="img-square-wrapper">
+                                                                <Link to={`/blog/${currBlogItems[0].id}`} >
+                                                                    <img className="latestCard-img" src={currBlogItems[0].coverImg} alt="Card image " />
+                                                                </Link>
                                                             </div>
-                                                            <div className="card-footer">
-                                                                <small >Last updated 1 min ago</small>
+                                                            <div className="card-body">
+                                                                <h4 className="card-title"> {currBlogItems[0].title}   </h4>
+                                                                <h6> -- By {currBlogItems[0].author}  </h6>
+                                                                <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
+                                                                <p className="date"  >  {currBlogItems[0].Created_At}  </p>
                                                             </div>
+                                                        </div>
+                                                        <div className="card-footer">
+                                                            <small >Last updated 1 min ago</small>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        ) : []
+                                        </div>
+                                    ) : []
                                 }
                             </section>
                         )
@@ -176,68 +177,55 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
 
 
             {
-                loading ? <LOAD /> :
-                    leftCards && leftCards.length !== 0 ?
-                        (
-                            <section style={{ padding: "1rem 0 ", margin: "1rem 0" }} >
-                                <Row style={{ padding: "3rem auto" }} >
-                                    {leftCards.map(card => (
-                                        (<Col key={card.id} lg={3} md={4} sm={12} xs={12} className="hovercard" style={{ marginBottom: "1rem" }}>
-                                            <EACH_CARD
-                                                ID={card.id}
-                                                each_cardObj={card}
-                                                USER={USER}
-                                            />
-                                        </Col>)
-                                    ))}
-                                </Row>
-                            </section>
-                        ) : []
+                leftCards && leftCards.length !== 0 ?
+                    (
+                        <section style={{ padding: "1rem 0 ", margin: "1rem 0" }} >
+                            <Row style={{ padding: "3rem auto" }} >
+                                {leftCards.map(card => (
+                                    (<Col key={card.id} lg={3} md={4} sm={12} xs={12} className="hovercard" style={{ marginBottom: "1rem" }}>
+                                        <EACH_CARD
+                                            ID={card.id}
+                                            each_cardObj={card}
+                                            USER={USER}
+                                        />
+                                    </Col>)
+                                ))}
+                            </Row>
+                        </section>
+                    ) : []
             }
 
 
 
-            <section className="padding-tb">
+            {
+                rightCarousal && rightCarousal.length !== 0 ?
+                    (
+                        <section className="padding-tb">
 
-
-                <div className="carousalBackground" >
-
-                </div>
-
-
-
-
-                <div>
-                    <Carousel responsive={responsive}>
-                        {rightCarousal && rightCarousal.map(card => (
-                            (<div id="carouMargin">
-                                <EACH_CAROUSAL
-                                    ID={card.id}
-                                    each_cardObj={card}
-                                    USER={USER}
-                                />
+                            <div className="carousalBackground" >
                             </div>
 
-                            )
-                        ))}
+                            <div>
+                                <Carousel responsive={responsive}>
+                                    {rightCarousal && rightCarousal.map(card => (
+                                        (<div id="carouMargin">
+                                            <EACH_CAROUSAL
+                                                ID={card.id}
+                                                each_cardObj={card}
+                                                USER={USER}
+                                            />
+                                        </div>
 
-                        {/*  <div>sajflkdjfl;afd</div>
-                    <div>sajflkdjfl;afd</div>
-                    <div>sajflkdjfl;afd</div> */}
+                                        )
+                                    ))}
 
+                                </Carousel>
+                            </div>
+                        </section>
+                    ) : []
+            }
 
-
-                    </Carousel>
-                </div>
-
-
-
-
-
-            </section>
-
-
-        </div >
+        </div>
     )
 }
 

@@ -35,9 +35,9 @@ const BlogDetailsScreen = ({ FetchBlogs, setAllBlogs, allBlogs, USER, loading, s
             setLoading(true);
             FetchBlogs();
             console.log(allBlogs);            // array of Object
-            setLoading(false);
+            // setLoading(false);
         }
-    }, [setAllBlogs, USER]);
+    }, [USER]);
 
 
     // const someHtml = '<h4>Maze Runner</h4><p><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=755&amp;q=80" alt=""></p><p><em><strong>Hellooo strawberry</strong></em></p><p><em>An ID should be unique within a page. However, if more than one element with the <strong>specified ID</strong> exists, the getElementById() method returns the first element in the source code.</em></p><p><img src="https://images.unsplash.com/photo-1452827073306-6e6e661baf57?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=667&amp;q=80" alt=""></p>'

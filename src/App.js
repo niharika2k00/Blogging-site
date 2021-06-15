@@ -129,7 +129,8 @@ const App = () => {
           ...doc.data(),
         }))
         // console.log(Items);
-        setAllBlogs(Items)
+        setAllBlogs(Items);
+        setLoading(false);
       })
     }
     else {

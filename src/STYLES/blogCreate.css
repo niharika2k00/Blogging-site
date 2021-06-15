@@ -24,8 +24,8 @@
 }
 
 #createHead {
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
+    color: black;
+    text-shadow: 1px 1px 3px #757171;
     align-items: center;
     text-align: center;
     justify-content: center;
