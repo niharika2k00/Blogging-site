@@ -145,7 +145,9 @@ const App = () => {
   return (
     <Router>
       <div id="App" style={{ backgroundColor: "#f4f4f4" }}>
-        <NAVBAR />
+        <NAVBAR
+          USER={USER}
+        />
 
         <main >
           <div /* className="self_containerFull" */>

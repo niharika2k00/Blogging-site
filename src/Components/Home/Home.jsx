@@ -66,7 +66,7 @@ const Home = ({ signUp, setSignUp, login, setLogin, USER, set_USER, name, setNam
 
                 {/* <button type="button" className="btn btn-dark pad" onClick={() => setSignUp(true)} > Register </button> */}
                 <button type="button" className="btn btn-dark pad" onClick={() => setLogin(true)}>Sign In</button>
-                <button type="button" className="btn btn-dark pad" onClick={() => handle_LogOut()}>Logout</button>
+                {/* <button type="button" className="btn btn-dark pad" onClick={() => handle_LogOut()}>Logout</button> */}
 
             </div>
         </div >
