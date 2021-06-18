@@ -17,7 +17,7 @@ const card = ({ ID, each_cardObj, USER }) => {
             <Card style={{ width: '100%' }}>
                 <Card.Img variant="top" src={each_cardObj.coverImg} id="cardImg" />
                 <Card.Body>
-                    <Card.Title style={{ paddingBottom: "1.4rem" }} >
+                    <Card.Title style={{ paddingBottom: "1.3rem", fontWeight: "700" }} >
                         <LinesEllipsis
                             text={each_cardObj.title}
                             maxLine='2'
@@ -28,7 +28,7 @@ const card = ({ ID, each_cardObj, USER }) => {
                     </Card.Title>
 
                     <h6> {each_cardObj.Created_At}  </h6>
-                    <Card.Text>
+                    <Card.Text className="textname">
                         - By {each_cardObj.author}
                     </Card.Text>
 

@@ -21,7 +21,9 @@ const Home = ({ signUp, setSignUp, login, setLogin, USER, set_USER, name, setNam
     };
 
 
-
+    const redirectCreate = () => {
+        history.push('/createblog');
+    }
 
 
 
@@ -66,9 +68,10 @@ const Home = ({ signUp, setSignUp, login, setLogin, USER, set_USER, name, setNam
 
                 {/* <button type="button" className="btn btn-dark pad" onClick={() => setSignUp(true)} > Register </button> */}
                 <button type="button" className="btn btn-dark pad" onClick={() => setLogin(true)}>Sign In</button>
+                <button type="button" className="btn btn-dark pad" onClick={() => redirectCreate()} ><i className="fas fa-plus-circle"> </i> Create</button>
                 {/* <button type="button" className="btn btn-dark pad" onClick={() => handle_LogOut()}>Logout</button> */}
 
-            </div>
+            </div >
         </div >
     )
 }

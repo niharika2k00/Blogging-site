@@ -147,10 +147,10 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
             <div className="d-flex justify-content-end  buttonPadding "   >
                 <div className="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="submit" onClick={redirect} className="btn" style={{ backgroundColor: "#5ab1ad", color: "white" }}>
-                        <h6 style={{ marginTop: ".1rem", marginBottom: ".1rem" }} >  <i className="fas fa-eye"></i> All Blogs</h6>
+                        <h6 style={{ marginTop: ".1rem", marginBottom: ".1rem", color: "white" }} >  <i className="fas fa-eye"></i> All Blogs</h6>
                     </button>
                     <button type="button" className="btn " onClick={() => setSignUp(true)} style={{ backgroundColor: "#ffc156", color: "white" }}  >
-                        <h6 style={{ marginTop: ".1rem", marginBottom: ".1rem" }}> <i className="fas fa-plus-circle"></i>  Add Admin</h6>
+                        <h6 style={{ marginTop: ".1rem", marginBottom: ".1rem", color: "white" }}> <i className="fas fa-plus-circle"></i>  Add Admin</h6>
                     </button>
                 </div>
             </div>

@@ -95,7 +95,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
 
 
     return (
-        <div className="self-container" >
+        <div className="self-container">
 
             <section id="parallax" className="parallax">
                 <div className="container" data-aos="zoom-in">
@@ -106,9 +106,9 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
                             Problems are not stop signs, they are guidelines...    – Robert H. Schiuller
                             <i className="fas fa-quote-right" style={{ paddingLeft: "1rem" }} ></i>
                         </p>
-                        <a className="parallax-btn" href="/createblog">
+                        {/*  <a className="parallax-btn" href="/createblog">
                             <i className="fas fa-plus-circle" style={{ fontSize: "1.3rem" }} > </i>   Create
-                        </a>
+                        </a> */}
                     </div>
                 </div>
             </section>
@@ -128,7 +128,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
 
                                         <Card.Body>
                                             <Card.Title> {currBlogItems[0].title} </Card.Title>
-                                            <Card.Text>
+                                            <Card.Text className="textname" style={{ fontSize: "1rem", fontWeight: "bold" }}>
                                                 - By {currBlogItems[0].author}
                                             </Card.Text>
                                             <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
@@ -155,7 +155,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
                                                             </div>
                                                             <div className="card-body">
                                                                 <h4 className="card-title"> {currBlogItems[0].title}   </h4>
-                                                                <h6> -- By {currBlogItems[0].author}  </h6>
+                                                                <h6 className="textname"> - By {currBlogItems[0].author}  </h6>
                                                                 <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
                                                                 <p className="date"  >  {currBlogItems[0].Created_At}  </p>
                                                             </div>

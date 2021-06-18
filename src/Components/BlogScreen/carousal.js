@@ -35,7 +35,7 @@ const carousal = ({ ID, each_cardObj, USER }) => {
                     </Link>
 
                     <p className="date">  {each_cardObj.Created_At}  </p>
-                    <Card.Text>
+                    <Card.Text className="textname">
                         -  {each_cardObj.author}
                     </Card.Text>
 
