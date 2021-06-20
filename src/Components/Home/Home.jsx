@@ -22,7 +22,13 @@ const Home = ({ signUp, setSignUp, login, setLogin, USER, set_USER, name, setNam
 
 
     const redirectCreate = () => {
-        history.push('/createblog');
+        if (Object.keys(USER).length !== 0) {
+            history.push('/admin-blog/createblog');
+        }
+        else {
+            console.log("No user logged in")
+        }
+
     }
 
 

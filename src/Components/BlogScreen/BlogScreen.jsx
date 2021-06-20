@@ -22,19 +22,20 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
     let history = useHistory();
 
 
+    // ---------------------------------         EVERY ONE CAN ACCESS ALL BLOGS(without sign In)       ---------------------
     useEffect(() => {
-        if (Object.keys(USER).length !== 0) {
-            setLoading(true);
-            FetchBlogs();
-            console.log(allBlogs);            // array of Object
-            // console.log(allBlogs.length);
-            // setLoading(false);
-        }
-        else {
-            console.log("No User Logged In");
-            history.push('/');
-        }
-    }, [USER, allBlogs.length]);
+        // if (Object.keys(USER).length !== 0) {
+        // setLoading(true);
+        FetchBlogs();
+        console.log(allBlogs);            // array of Object
+        // console.log(allBlogs.length);
+        // setLoading(false);
+        // }
+        // else {
+        // console.log("No User Logged In");
+        // history.push('/');
+        // }
+    }, [allBlogs.length]);
 
 
 
@@ -52,7 +53,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
 
     // -----------------     SORT USING DATES     ----------------
     useEffect(() => {
-        if ((Object.keys(USER).length !== 0) && (allBlogs.length !== 0)) {
+        if (/* (Object.keys(USER).length !== 0) && */ (allBlogs.length !== 0)) {
             setLoading(true);
             const blogsClone = [...allBlogs];
             blogsClone.sort(function (a, b) {
@@ -62,7 +63,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
             // console.log(blogsClone);
             // setLoading(false);
         }
-    }, [USER, allBlogs.length])
+    }, [allBlogs.length])
 
 
 

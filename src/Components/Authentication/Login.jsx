@@ -25,7 +25,7 @@ const Login = ({ setLogin, email, setEmail, password, setPassword, loading, setL
             console.log(User.displayName);
             setLogin(false);
             setLoading(false);
-            history.push('/createblog');
+            history.push('/admin-blog/createblog');
 
         } catch (error) {
             console.log(error);

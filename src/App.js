@@ -122,35 +122,38 @@ const App = () => {
 
 
   const FetchBlogs = () => {
-    if (Object.keys(USER).length !== 0) {
-      db.collection('Blogs').onSnapshot(snapshot => {
-        const Items = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        // console.log(Items);
-        setAllBlogs(Items);
-        setLoading(false);
-      })
-    }
-    else {
-      console.log("No user logged in OOPSSS !! ");
-    }
+    // if (Object.keys(USER).length !== 0) {
+    db.collection('Blogs').onSnapshot(snapshot => {
+      const Items = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      // console.log(Items);
+      setAllBlogs(Items);
+      setLoading(false);
+    })
+    // }
+    // else {
+    // console.log("No user logged in OOPSSS !! ");
+    // }
   }
 
+
+
+
   return (
-    <Router basename={'/blogs'}>
+    <Router  /*basename={'/blogs'}*/   >
       <div id="App" style={{ backgroundColor: "#f4f4f4" }}>
-        <NAVBAR
+        {/* <NAVBAR
           USER={USER}
-        />
+        /> */}
+
+
 
         <main >
-          <div /* className="self_containerFull" */>
+          <div>
 
-            {/* <Route path='/createBlog' component={CREATE_BLOG} exact /> */}
-
-            <Route path='/'
+            <Route path='/admin-blog'
               render={(props) => (
                 <HOMESCREEN {...props}
                   signUp={signUp}
@@ -175,7 +178,7 @@ const App = () => {
             />
 
 
-            <Route path='/createblog'
+            <Route path='/admin-blog/createblog'
               render={(props) => (
                 <CREATE_BLOG {...props}
                   USER={USER}
@@ -213,7 +216,7 @@ const App = () => {
             />
 
 
-            <Route path='/blogs'
+            <Route path='/'
               render={(props) => (
                 <BLOG {...props}
                   USER={USER}

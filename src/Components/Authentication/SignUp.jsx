@@ -54,7 +54,7 @@ const SignUp = ({ setSignUp, name, setName, email, setEmail, password, setPasswo
             setConfirmpass('');
             setPassword('');
             setLoading(false);
-            history.push('/createblog');
+            history.push('/admin-blog/createblog');
         }
         catch (error) {
             console.log(error);
