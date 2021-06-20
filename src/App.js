@@ -138,12 +138,8 @@ const App = () => {
     }
   }
 
-
-
-
-
   return (
-    <Router>
+    <Router basename={'/blogs'}>
       <div id="App" style={{ backgroundColor: "#f4f4f4" }}>
         <NAVBAR
           USER={USER}
