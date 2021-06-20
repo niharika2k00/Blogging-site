@@ -165,7 +165,7 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
                     (
                         <Form id="login_form"   /* onSubmit={BlogSubmit_Handler}  */>
                             <Form.Group controlId='title'>
-                                <Form.Label><b style={{ fontSize: "1.2rem" }} >Details<span style={{ color: 'crimson' }}>*</span></b> (Fill all the fields necessary) </Form.Label>
+                                <Form.Label><b style={{ fontSize: "1.2rem" }} >Details<span style={{ color: 'crimson' }}>*</span></b> (Fill all the fields compulsory) </Form.Label>
                                 {
                                     details && <DETAILS
                                         type='setting'
