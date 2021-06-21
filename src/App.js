@@ -142,15 +142,15 @@ const App = () => {
 
 
   return (
-    <Router  /*basename={'/blogs'}*/   >
+    <Router basename={'/blogs'}   >
       <div id="App" style={{ backgroundColor: "#f4f4f4" }}>
-        {/* <NAVBAR
+        {/*  <NAVBAR
           USER={USER}
         /> */}
 
 
 
-        <main >
+        <main>
           <div>
 
             <Route path='/admin-blog'
@@ -235,7 +235,7 @@ const App = () => {
 
 
 
-            <Route path='/each/:id'
+            <Route path='/post/:id'
               render={(props) => (
                 <BLOG_DETAILS {...props}
                   USER={USER}

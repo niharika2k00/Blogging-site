@@ -5,8 +5,8 @@
 }
 
 .self-container {
-    margin: 0.7rem;
-    padding: 1.5rem;
+    /* margin: 0.7rem; */
+    padding: 2.0rem;
 }
 
 .padding-tb {
@@ -20,8 +20,8 @@ html {
 
 @media (max-width: 460px) {
     .self-container {
-        margin: 0.5rem;
-        padding: .45rem;
+        margin: 0.1rem;
+        padding: .9rem;
     }
     .padding-tb {
         padding-top: 2rem;

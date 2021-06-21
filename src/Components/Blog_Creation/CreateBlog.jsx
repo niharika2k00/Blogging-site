@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import MarkdownIt from 'markdown-it'
 import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
@@ -29,7 +29,7 @@ import { useHistory } from "react-router-dom";
 // BLOG CREATION USING MARK DOWN
 const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle, EditorChangeHandler, html, UploadCoverImage, loading,
     setLoading, successMessage, setSuccessMessage, signUp, setSignUp, name, setName, email, setEmail, password, setPassword, confirmpass, setConfirmpass,
-    warningMessage, setWarningMessage }) => {
+    warningMessage, setWarningMessage, USER }) => {
 
 
 
@@ -50,6 +50,15 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
         document.getElementById("blogBody").innerHTML = "hello";
     }, []); */
 
+
+    useEffect(() => {
+        if (Object.keys(USER).length !== 0) {
+            console.log("USER EXIST")
+        }
+        else {
+            history.push('/admin-blog');
+        }
+    })
 
     const redirect = () => {
         history.push('/');

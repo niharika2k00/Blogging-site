@@ -123,7 +123,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
                             <section>
                                 <Row>
                                     <Card style={{ width: '100%' }}>
-                                        <Link to={`/each/${currBlogItems[0].id}`} >
+                                        <Link to={`/post/${currBlogItems[0].id}`} >
                                             <Card.Img variant="top" src={currBlogItems[0].coverImg} href={`/each/${currBlogItems[0].id}`} />
                                         </Link>
 
@@ -150,7 +150,7 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
                                                     <div className="card"  >
                                                         <div className="card-horizontal">
                                                             <div className="img-square-wrapper">
-                                                                <Link to={`/each/${currBlogItems[0].id}`} >
+                                                                <Link to={`/post/${currBlogItems[0].id}`} >
                                                                     <img className="latestCard-img" src={currBlogItems[0].coverImg} alt="Card image " />
                                                                 </Link>
                                                             </div>
