@@ -20,7 +20,7 @@ const carousal = ({ ID, each_cardObj, USER }) => {
                 <Card.Img variant="top" src={each_cardObj.coverImg} id="carousalImg" />
 
                 <Card.Body>
-                    <Link to={`/blog/${ID}`} style={{ color: "black" }}  >
+                    <Link to={`/each/${ID}`} style={{ color: "black" }}  >
                         <Card.Title style={{ paddingBottom: "1.4rem" }} >
                             <LinesEllipsis
                                 className="link-tag"

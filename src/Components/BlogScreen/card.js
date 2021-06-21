@@ -32,7 +32,7 @@ const card = ({ ID, each_cardObj, USER }) => {
                         - By {each_cardObj.author}
                     </Card.Text>
 
-                    <Button variant="dark" href={`/blog/${ID}`} >Know More... </Button>
+                    <Button variant="dark" href={`/each/${ID}`} >Know More... </Button>
                 </Card.Body>
             </Card>
 

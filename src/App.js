@@ -235,7 +235,7 @@ const App = () => {
 
 
 
-            <Route path='/blog/:id'
+            <Route path='/each/:id'
               render={(props) => (
                 <BLOG_DETAILS {...props}
                   USER={USER}
