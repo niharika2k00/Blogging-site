@@ -19,20 +19,13 @@ import '../../index.css';
 import SIGNUP_POPUP from '../Authentication/SignUp.jsx';
 import { useHistory } from "react-router-dom";
 
-
-
 // const gfm = require('remark-gfm');
-
-
 
 
 // BLOG CREATION USING MARK DOWN
 const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, setHeading, Save_handler, Img_handle, EditorChangeHandler, html, UploadCoverImage, loading,
     setLoading, successMessage, setSuccessMessage, signUp, setSignUp, name, setName, email, setEmail, password, setPassword, confirmpass, setConfirmpass,
     warningMessage, setWarningMessage, USER }) => {
-
-
-
 
     let history = useHistory();
     const store = firebase.storage();
@@ -49,7 +42,6 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
     /* useEffect(() => {
         document.getElementById("blogBody").innerHTML = "hello";
     }, []); */
-
 
     useEffect(() => {
         if (Object.keys(USER).length !== 0) {
@@ -102,16 +94,12 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
         }
     }
 
-
-
     const ImageUploadHandler = async (file, callback) => {
         console.log("file : ", file);
         const Picture = await uploadImg(file);
         console.log(Picture);
         callback(Picture);
     }
-
-
 
     const uploadImg = async (file) => {
         try {
@@ -126,9 +114,6 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
             console.log(error);
         }
     }
-
-
-
 
 
     return (

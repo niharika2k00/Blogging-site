@@ -37,7 +37,6 @@ const App = () => {
 
 
 
-
   const USER_DETAILS = firebase.auth().currentUser;
   // console.log(USER_DETAILS);
 
@@ -132,27 +131,16 @@ const App = () => {
       setAllBlogs(Items);
       setLoading(false);
     })
-    // }
-    // else {
-    // console.log("No user logged in OOPSSS !! ");
-    // }
   }
-
-
 
 
   return (
     <Router basename={'/blogs'}   >
       <div id="App" style={{ backgroundColor: "#f4f4f4" }}>
-        {/*  <NAVBAR
-          USER={USER}
-        /> */}
-
-
+        <NAVBAR USER={USER} />
 
         <main>
           <div>
-
             <Route path='/admin-blog'
               render={(props) => (
                 <HOMESCREEN {...props}
@@ -176,7 +164,6 @@ const App = () => {
               )}
               exact
             />
-
 
             <Route path='/admin-blog/createblog'
               render={(props) => (
@@ -215,7 +202,6 @@ const App = () => {
               exact
             />
 
-
             <Route path='/'
               render={(props) => (
                 <BLOG {...props}
@@ -233,8 +219,6 @@ const App = () => {
               exact
             />
 
-
-
             <Route path='/post/:id'
               render={(props) => (
                 <BLOG_DETAILS {...props}
@@ -249,16 +233,19 @@ const App = () => {
               exact
             />
           </div>
-
-
         </main>
-
-
-
-
       </div>
     </Router>
   )
 }
 
 export default App;
+
+
+/*
+DUMMY PASSWAORD (Credentials):
+
+email : n@gmail.com
+password : 121212
+
+*/
