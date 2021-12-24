@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -12,15 +11,12 @@ import 'react-multi-carousel/lib/styles.css';
 import { useHistory } from "react-router-dom";
 
 
-
-
 const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setLeftCards, rightCarousal, setRightCarousal }) => {
 
     const [currBlogItems, setcurrBlogItems] = useState([]);
     const BlogLength = allBlogs.length;
     var width = window.innerWidth;
     let history = useHistory();
-
 
     // ---------------------------------         EVERY ONE CAN ACCESS ALL BLOGS(without sign In)       ---------------------
     useEffect(() => {
@@ -37,8 +33,6 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
         // }
     }, [allBlogs.length]);
 
-
-
     useEffect(() => {
         const m = Math.floor(allBlogs.length / 2);
         const [leftSide, rightSide] = [allBlogs.slice(0, m), allBlogs.slice(m, allBlogs.length)];
@@ -47,9 +41,6 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
         console.log(leftSide);
         console.log(rightSide);
     }, [allBlogs.length])
-
-
-
 
     // -----------------     SORT USING DATES     ----------------
     useEffect(() => {
@@ -64,11 +55,6 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
             // setLoading(false);
         }
     }, [allBlogs.length])
-
-
-
-
-
 
     const responsive = {
         superLargeDesktop: {
@@ -88,12 +74,6 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
             items: 1
         }
     }
-
-
-
-
-
-
 
     return (
         <div className="self-container">
@@ -115,117 +95,98 @@ const Blog = ({ FetchBlogs, allBlogs, USER, loading, setLoading, leftCards, setL
             </section>
 
 
-            {
-                loading ? <LOAD /> :
-                    (width < 970) && (currBlogItems && currBlogItems.length !== 0) ?
-                        (
-                            // -----------------------      FOR MOBILE VIEW          ---------------------------
-                            <section>
-                                <Row>
-                                    <Card style={{ width: '100%' }}>
-                                        <Link to={`/post/${currBlogItems[0].id}`} >
-                                            <Card.Img variant="top" src={currBlogItems[0].coverImg} href={`/each/${currBlogItems[0].id}`} />
-                                        </Link>
+            {loading ? <LOAD /> :
+                (width < 970) && (currBlogItems && currBlogItems.length !== 0) ?
+                    (
+                        // -----------------------      FOR MOBILE VIEW          ---------------------------
+                        <section>
+                            <Row>
+                                <Card style={{ width: '100%' }}>
+                                    <Link to={`/post/${currBlogItems[0].id}`} >
+                                        <Card.Img variant="top" src={currBlogItems[0].coverImg} href={`/each/${currBlogItems[0].id}`} />
+                                    </Link>
 
-                                        <Card.Body>
-                                            <Card.Title> {currBlogItems[0].title} </Card.Title>
-                                            <Card.Text className="textname" style={{ fontSize: "1rem", fontWeight: "bold" }}>
-                                                - By {currBlogItems[0].author}
-                                            </Card.Text>
-                                            <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
-                                            <p className="date"  >  {currBlogItems[0].Created_At}  </p>
-                                        </Card.Body>
-                                    </Card>
-                                </Row>
-                            </section>
-                        ) :
+                                    <Card.Body>
+                                        <Card.Title> {currBlogItems[0].title} </Card.Title>
+                                        <Card.Text className="textname" style={{ fontSize: "1rem", fontWeight: "bold" }}>
+                                            - By {currBlogItems[0].author}
+                                        </Card.Text>
+                                        <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
+                                        <p className="date"  >  {currBlogItems[0].Created_At}  </p>
+                                    </Card.Body>
+                                </Card>
+                            </Row>
+                        </section>
+                    ) :
 
-                        (  // -----------------------      FOR LAPTOP VIEW          ---------------------------
-                            <section>
-                                {currBlogItems && currBlogItems.length !== 0 ?
-                                    (
-                                        <div className="container-fluid">
-                                            <div className="row" style={{ justifyContent: "center", alignItems: "center", margin: "auto", paddingBottom: "3rem" }}>
-                                                <div className="col-lg-9 col-sm-12 col-xs-12 col-md-9 mt-3 shadow">
-                                                    <div className="card"  >
-                                                        <div className="card-horizontal">
-                                                            <div className="img-square-wrapper">
-                                                                <Link to={`/post/${currBlogItems[0].id}`} >
-                                                                    <img className="latestCard-img" src={currBlogItems[0].coverImg} alt="Card image " />
-                                                                </Link>
-                                                            </div>
-                                                            <div className="card-body">
-                                                                <h4 className="card-title"> {currBlogItems[0].title}   </h4>
-                                                                <h6 className="textname"> - By {currBlogItems[0].author}  </h6>
-                                                                <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
-                                                                <p className="date"  >  {currBlogItems[0].Created_At}  </p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="card-footer">
-                                                            <small >Last updated 1 min ago</small>
-                                                        </div>
+                    (  // -----------------------      FOR LAPTOP VIEW          ---------------------------
+                        <section>
+                            {currBlogItems && currBlogItems.length !== 0 &&
+                                (<div className="container-fluid">
+                                    <div className="row" style={{ justifyContent: "center", alignItems: "center", margin: "auto", paddingBottom: "3rem" }}>
+                                        <div className="col-lg-9 col-sm-12 col-xs-12 col-md-9 mt-3 shadow">
+                                            <div className="card"  >
+                                                <div className="card-horizontal">
+                                                    <div className="img-square-wrapper">
+                                                        <Link to={`/post/${currBlogItems[0].id}`} >
+                                                            <img className="latestCard-img" src={currBlogItems[0].coverImg} alt="Card image " />
+                                                        </Link>
                                                     </div>
+                                                    <div className="card-body">
+                                                        <h4 className="card-title"> {currBlogItems[0].title}   </h4>
+                                                        <h6 className="textname"> - By {currBlogItems[0].author}  </h6>
+                                                        <p className="date" style={{ margin: ".6rem" }} >  Latest </p>
+                                                        <p className="date"  >  {currBlogItems[0].Created_At}  </p>
+                                                    </div>
+                                                </div>
+                                                <div className="card-footer">
+                                                    <small >Last updated 1 min ago</small>
                                                 </div>
                                             </div>
                                         </div>
-                                    ) : []
-                                }
-                            </section>
-                        )
-            }
-
-
-
-
-            {
-                leftCards && leftCards.length !== 0 ?
-                    (
-                        <section style={{ padding: "1rem 0 ", margin: "1rem 0" }} >
-                            <Row style={{ padding: "3rem auto" }} >
-                                {leftCards.map(card => (
-                                    (<Col key={card.id} lg={3} md={4} sm={12} xs={12} className="hovercard" style={{ marginBottom: "1rem" }}>
-                                        <EACH_CARD
-                                            ID={card.id}
-                                            each_cardObj={card}
-                                            USER={USER}
-                                        />
-                                    </Col>)
-                                ))}
-                            </Row>
+                                    </div>
+                                </div>
+                                )}
                         </section>
-                    ) : []
-            }
+                    )}
 
+            {leftCards && leftCards.length !== 0 &&
+                (<section style={{ padding: "1rem 0 ", margin: "1rem 0" }} >
+                    <Row style={{ padding: "3rem auto" }} >
+                        {leftCards.map(card => (
+                            (<Col key={card.id} lg={3} md={4} sm={12} xs={12} className="hovercard" style={{ marginBottom: "1rem" }}>
+                                <EACH_CARD
+                                    ID={card.id}
+                                    each_cardObj={card}
+                                    USER={USER}
+                                />
+                            </Col>)
+                        ))}
+                    </Row>
+                </section>
+                )}
 
+            {rightCarousal && rightCarousal.length !== 0 &&
+                (<section className="padding-tb">
+                    <div className="carousalBackground" >
+                    </div>
 
-            {
-                rightCarousal && rightCarousal.length !== 0 ?
-                    (
-                        <section className="padding-tb">
-
-                            <div className="carousalBackground" >
-                            </div>
-
-                            <div>
-                                <Carousel responsive={responsive}>
-                                    {rightCarousal && rightCarousal.map(card => (
-                                        (<div id="carouMargin">
-                                            <EACH_CAROUSAL
-                                                ID={card.id}
-                                                each_cardObj={card}
-                                                USER={USER}
-                                            />
-                                        </div>
-
-                                        )
-                                    ))}
-
-                                </Carousel>
-                            </div>
-                        </section>
-                    ) : []
-            }
-
+                    <div>
+                        <Carousel responsive={responsive}>
+                            {rightCarousal && rightCarousal.map(card => (
+                                (<div id="carouMargin">
+                                    <EACH_CAROUSAL
+                                        ID={card.id}
+                                        each_cardObj={card}
+                                        USER={USER}
+                                    />
+                                </div>
+                                )
+                            ))}
+                        </Carousel>
+                    </div>
+                </section>
+                )}
         </div>
     )
 }

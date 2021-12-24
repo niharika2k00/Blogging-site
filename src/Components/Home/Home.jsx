@@ -11,15 +11,12 @@ const Home = ({ signUp, setSignUp, login, setLogin, USER, set_USER, name, setNam
 
     let history = useHistory();
 
-
-
     const handle_LogOut = () => {
         app.auth().signOut();
         console.log("Successfully Logged out ", name);
         set_USER({});
         history.push('/');
     };
-
 
     const redirectCreate = () => {
         if (Object.keys(USER).length !== 0) {
@@ -30,8 +27,6 @@ const Home = ({ signUp, setSignUp, login, setLogin, USER, set_USER, name, setNam
         }
 
     }
-
-
 
     return (
         <div className="home-bg home"  >

@@ -27,6 +27,7 @@ const CreateBlogMD = ({ details, setDetailsPopup, author, setAuthor, heading, se
     setLoading, successMessage, setSuccessMessage, signUp, setSignUp, name, setName, email, setEmail, password, setPassword, confirmpass, setConfirmpass,
     warningMessage, setWarningMessage, USER }) => {
 
+
     let history = useHistory();
     const store = firebase.storage();
     const db = firebase.firestore();
